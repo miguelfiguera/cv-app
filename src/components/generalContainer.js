@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { BasicInfo } from "./EditableLabel.js";
+import { BasicInfo } from "./basicInfo.js";
+import {Education} from './education.js'
 
 export class GeneralContainer extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ export class GeneralContainer extends React.Component {
     return (
       <div className="GeneralContainer">
         <BasicInfo />
+        <Education />
       </div>
     );
   }
