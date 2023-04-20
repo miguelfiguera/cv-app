@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export class StudyItem extends React.Component{
+export class Work extends React.Component{
     constructor(props){
         super(props);
     }
@@ -10,9 +10,10 @@ export class StudyItem extends React.Component{
     render(){
         return(
             <div className="study-item">
-                <h4>School/University: {this.props.school}</h4>
+                <h4>Company: {this.props.company}</h4>
                 <h4>From: {this.props.beggining} to: {this.props.graduationDate}</h4>
-                <h4>Degree: {this.props.degree}</h4>
+                <h4>Position Title: {this.props.position}</h4>
+                <h3>Common tasks: {this.props.tasks}</h3>
                 <button className="erase" onClick={this.props.handleDelete(this.props.key)} >X</button>
             </div>
 

@@ -49,8 +49,6 @@ export class Education extends React.Component{
         this.setState({
             studies:[...this.state.studies,this.state.default]
         })
-        console.log(this.state.default.school)
-        console.log(this.state.studies)
         this.toggleForm()
         this.resetForm()
     }
@@ -75,7 +73,7 @@ export class Education extends React.Component{
     render(){
 
         const showStudies=this.state.studies.map((stud)=>{
-            return (<StudyItem data={stud} key={this.state.studies.indexOf(stud)} />)
+            return (<StudyItem handleDelete={this.handleDelete} school={stud.school} graduationDate={stud.graduationDate} beggining={stud.beggining} degree={stud.degree} key={stud.id} />)
         })
 
         const hiddenForm= this.state.activeForm ? "education-form" : 'education-form hidden'
@@ -88,25 +86,25 @@ export class Education extends React.Component{
 
                 {showStudies}
 
-                <form className={hiddenForm}>
+                <form className={hiddenForm} onSubmit={this.handleSubmit}>
                     <div className="formController">
                         <label htmlFor="School">School/University</label>
-                        <input type="text" name='school' onChange={this.handleChange} value={this.state.default.school}/>
+                        <input type="text" name='school' onChange={this.handleChange} defaultValue={this.state.default.school}/>
                     </div>
                     <div className="formController">
                         <label htmlFor="beggining">From:</label>
-                        <input type="number" name="beggining" onChange={this.handleChange} value={this.state.default.beggining} />
+                        <input type="number" name="beggining" onChange={this.handleChange} defaultValue={this.state.default.beggining} />
                     </div>
                     <div className="formController">
                         <label htmlFor="graduationDate">To:</label>
-                        <input type="number" onChange={this.handleChange} name="graduationDate" value={this.state.default.graduationDate}/>
+                        <input type="number" onChange={this.handleChange} name="graduationDate" defaultValue={this.state.default.graduationDate}/>
                     </div>
                     <div className="formController">
                         <label htmlFor="Degree">Degree:</label>
-                        <input type="text" name="degree" onChange={this.handleChange} value={this.state.default.degree}/>
+                        <input type="text" name="degree" onChange={this.handleChange} defaultValue={this.state.default.degree}/>
                     </div>
                     <div className="formControl-buttons">
-                      <button type="submit" onSubmit={this.handleSubmit}>Save</button>
+                      <button type="submit">Save</button>
                       <button className="cancel" onClick={this.toggleForm}><i className="fa fa-ban"></i> Cancel</button>
                     </div>
                 </form>
