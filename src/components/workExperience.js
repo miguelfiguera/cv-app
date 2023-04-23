@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Work } from "./work";
-import uniqid from 'uniqid';
-
+import uniqid from "uniqid";
 
 class WorkExperience extends React.Component {
   constructor(props) {
@@ -9,7 +8,7 @@ class WorkExperience extends React.Component {
     this.state = {
       works: [],
       default: {
-        id:uniqid(),
+        id: uniqid(),
         company: "",
         from: "",
         to: "",
@@ -19,20 +18,18 @@ class WorkExperience extends React.Component {
       activeForm: false,
       activeButton: true,
     };
-    this.toggleForm=this.toggleForm.bind(this)
-    this.handleSubmit=this.handleSubmit.bind(this)
-    this.handleCancel=this.handleCancel.bind(this)
-    this.handleDelete=this.handleDelete.bind(this)
-
+    this.toggleForm = this.toggleForm.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleCancel(e){
-    e.preventDefault()
-    this.toggleForm()
+  handleCancel(e) {
+    e.preventDefault();
+    this.toggleForm();
   }
 
   toggleForm() {
-
     this.setState({
       activeForm: !this.state.activeForm,
       activeButton: !this.state.activeButton,
@@ -43,6 +40,7 @@ class WorkExperience extends React.Component {
   resetForm() {
     this.setState({
       default: {
+        id:uniqid(),
         company: "",
         from: "",
         to: "",
@@ -68,13 +66,15 @@ class WorkExperience extends React.Component {
     });
   };
 
-  handleDelete(id){
-    const filteredWorks=this.state.works.filter((w)=>{return w.id!==id})
+  handleDelete=(id)=> {
+    const filteredWorks = this.state.works.filter(w => {
+      return w.id !== id;
+    });
 
     this.setState({
-        works: filteredWorks
-    })
-}
+      works: filteredWorks,
+    });
+  }
 
   render() {
     const works = this.state.works.map((w) => {
@@ -86,38 +86,75 @@ class WorkExperience extends React.Component {
       : "education-form hidden";
 
     const theHiddenButton = this.state.activeButton
-      ? "add-item"
+      ? "add-item btn btn-secondary mb-3"
       : "add-item hidden";
 
     return (
-      <div className="workExperience">
-        <h1>Work Experience:</h1>
-
+      <div className="workExperience shadow-lg container-sm rounded-3  mt-3 mb-3">
+        <h1 className="mt-1">Work Experience:</h1>
+        <div className="d-flex p-2 flex-row flex-wrap">
         {works}
-
+        </div>
         <form className={hiddenForm} onSubmit={this.handleSubmit}>
-          <div className="formController">
-            <label htmlFor="company">Company</label>
-            <input type="text"defaultValue={this.state.default.company} name='company' onChange={this.handleChange}/>
+          <div className="input-group mb-3">
+            <label htmlFor="company" className="input-group-text">
+              Company
+            </label>
+            <input
+              className="form-control form-control-lg"
+              type="text"
+              name="company"
+              onChange={this.handleChange}
+            />
           </div>
-          <div className="formController">
-            <label htmlFor="from">From: </label>
-            <input type="number" defaultValue={this.state.default.from} name='from' onChange={this.handleChange}/>
+          <div className="input-group mb-3">
+            <label htmlFor="from" className="input-group-text">
+              From:{" "}
+            </label>
+            <input
+              className="form-control form-control-lg"
+              type="number"
+              name="from"
+              onChange={this.handleChange}
+            />
           </div>
-          <div className="formController">
-            <label htmlFor="to">To:</label>
-            <input type="number" name='to' onChange={this.handleChange} defaultValue={this.state.default.to}/>
+          <div className="input-group mb-3">
+            <label htmlFor="to" className="input-group-text">
+              To:
+            </label>
+            <input
+              className="form-control form-control-lg"
+              type="number"
+              name="to"
+              onChange={this.handleChange}
+            />
           </div>
-          <div className="formController">
-            <label htmlFor="positionTitle">Position title:</label>
-            <input type="text" defaultValue={this.state.default.positionTitle} name='positionTitle' onChange={this.handleChange}/>
+          <div className="input-group mb-3">
+            <label htmlFor="positionTitle" className="input-group-text">
+              Position title:
+            </label>
+            <input
+              className="form-control form-control-lg"
+              type="text"
+              name="positionTitle"
+              onChange={this.handleChange}
+            />
           </div>
-          <div className="formController">
-            <label htmlFor="commonTasks">Common Tasks (separated by a ','): </label>
-            <input type="text" defaultValue={this.state.default.commonTasks} name='commonTasks' onChange={this.handleChange}/>
+          <div className="input-group mb-3">
+            <label htmlFor="commonTasks" className="input-group-text">
+              Common Tasks (separated by a ','):{" "}
+            </label>
+            <input
+              className="form-control form-control-lg"
+              type="text"
+              name="commonTasks"
+              onChange={this.handleChange}
+            />
           </div>
-          <button type="submit">Save</button>
-          <button className="cancel" onClick={this.handleCancel}>
+          <button type="submit" className="mb-3 btn btn-primary">
+            Save
+          </button>
+          <button className="btn btn-danger ms-3 mb-3" onClick={this.handleCancel}>
             <i className="fa fa-ban"></i> Cancel
           </button>
         </form>

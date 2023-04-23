@@ -8,14 +8,14 @@ export class BasicInfo extends React.Component {
 
   render() {
     return (
-      <div className="personal">
-        <div className="personal-info">
+      <div className="shadow-lg container-sm rounded-3 row mt-3 ms-0 ">
+        <div className=" col">
           <EditableLabel value="First Name" tag="h1" />
           <EditableLabel value="Last Name" tag="h1" />
           <EditableLabel value="occupation" tag="h3" />
         </div>
-
-        <div className="contact">
+        <div className="col"></div>
+        <div className="col">
           <EditableLabel value="Address Line 1" tag="p" />
           <EditableLabel value="Address Line 2" tag="p" />
           <EditableLabel value="Town/City" tag="p" />

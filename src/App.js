@@ -3,7 +3,7 @@ import'./index.css';
 import {GeneralContainer} from './components/generalContainer.js'
 function App() {
   return (
-    <div className="App">
+    <div className="container-fluid text-bg-success p-3">
       <GeneralContainer />
     </div>
   );

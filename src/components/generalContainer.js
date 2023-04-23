@@ -10,7 +10,7 @@ export class GeneralContainer extends React.Component {
 
   render() {
     return (
-      <div className="GeneralContainer">
+      <div className=" container border border-light rounded-3 shadow-lg">
         <BasicInfo />
         <Education />
         <WorkExperience />

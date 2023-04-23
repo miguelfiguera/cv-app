@@ -20,7 +20,7 @@ export class Education extends React.Component {
     this.toggleForm = this.toggleForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
-    this.handleDelete=this.handleDelete.bind(this)
+    this.handleDelete = this.handleDelete.bind(this);
   }
   //Functions for this form
   toggleForm() {
@@ -35,7 +35,7 @@ export class Education extends React.Component {
   resetForm() {
     this.setState({
       default: {
-        id: "",
+        id: uniqid(),
         school: "",
         beggining: "",
         graduationDate: "",
@@ -46,7 +46,7 @@ export class Education extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    let stud=this.state.default
+    let stud = this.state.default;
     this.setState({
       studies: [...this.state.studies, stud],
     });
@@ -67,8 +67,8 @@ export class Education extends React.Component {
     this.toggleForm();
   }
 
-  handleDelete(id) {
-    const filteredStudies = this.state.studies.filter((study) => {
+  handleDelete=(id)=> {
+    const filteredStudies = this.state.studies.filter(study => {
       return study.id !== id;
     });
 
@@ -78,56 +78,68 @@ export class Education extends React.Component {
   }
 
   render() {
-      const showStudies=this.state.studies.map((stud)=>{
-            return (<StudyItem handleDelete={this.handleDelete} data={stud} key={stud.id} />)
-        })
+    const showStudies = this.state.studies.map((stud) => {
+      return (
+        <StudyItem handleDelete={this.handleDelete} data={stud} key={stud.id} />
+      );
+    });
 
     const hiddenForm = this.state.activeForm
       ? "education-form"
       : "education-form hidden";
     const theHiddenButton = this.state.activeButton
-      ? "add-item"
+      ? "add-item btn btn-secondary mb-3"
       : "add-item hidden";
 
-
-
     return (
-      <div className="FormHolder">
-        <h1>Education:</h1>
-
+      <div className="FormHolder shadow-lg container-sm rounded-3 mb-3  mt-3">
+        <h1 className="mt-1">Education:</h1>
+        <div className="d-flex p-2 flex-row flex-wrap">
         {showStudies}
-
+        </div>
         <form className={hiddenForm} onSubmit={this.handleSubmit}>
-          <div className="formController">
-            <label htmlFor="School">School/University</label>
+          <div className="input-group mb-3">
+            <label className="input-group-text" htmlFor="School">
+              School/University
+            </label>
             <input
+              className="form-control form-control-lg"
               type="text"
               name="school"
               onChange={this.handleChange}
               defaultValue={this.state.default.school}
             />
           </div>
-          <div className="formController">
-            <label htmlFor="beggining">From:</label>
+          <div className="input-group mb-3">
+            <label className="input-group-text" htmlFor="beggining">
+              From:
+            </label>
             <input
+              className="form-control form-control-lg"
               type="number"
               name="beggining"
               onChange={this.handleChange}
               defaultValue={this.state.default.beggining}
             />
           </div>
-          <div className="formController">
-            <label htmlFor="graduationDate">To:</label>
+          <div className="input-group mb-3">
+            <label className="input-group-text" htmlFor="graduationDate">
+              To:
+            </label>
             <input
+              className="form-control form-control-lg"
               type="number"
               onChange={this.handleChange}
               name="graduationDate"
               defaultValue={this.state.default.graduationDate}
             />
           </div>
-          <div className="formController">
-            <label htmlFor="Degree">Degree:</label>
+          <div className="input-group mb-3">
+            <label className="input-group-text" htmlFor="Degree">
+              Degree:
+            </label>
             <input
+              className="form-control form-control-lg"
               type="text"
               name="degree"
               onChange={this.handleChange}
@@ -135,8 +147,10 @@ export class Education extends React.Component {
             />
           </div>
           <div className="formControl-buttons">
-            <button type="submit">Save</button>
-            <button className="cancel" onClick={this.handleCancel}>
+            <button type="submit" className="mb-3 btn btn-primary">
+              Save
+            </button>
+            <button className="btn btn-danger ms-3 mb-3" onClick={this.handleCancel}>
               Cancel
             </button>
           </div>
